@@ -2,6 +2,7 @@ import express from 'express'
 import cors from 'cors'
 import morgan from 'morgan'
 import * as dotenv from 'dotenv';
+import './src/database/dbConection'
 
 dotenv.config(); // puedo leer variables de entorno, se declara antes del app.set
 //crear una instancia de express
