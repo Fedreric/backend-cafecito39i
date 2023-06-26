@@ -3,6 +3,7 @@ import cors from 'cors'
 import morgan from 'morgan'
 import * as dotenv from 'dotenv';
 import './src/database/dbConection'
+import productosRouter from './src/routes/productos.routes'
 
 dotenv.config(); // puedo leer variables de entorno, se declara antes del app.set
 //crear una instancia de express
@@ -22,7 +23,6 @@ app.use(morgan('dev')); // nos da informacion extra en la terminal
 
 
 //rutas
-//http://localhost:4000/prueba
-app.get('/prueba', (req, res)=>{
-    res.send('esto es una prueba de la solicitud get a mi backend');
-});
+//http://localhost:4000/apicafe/productos
+
+app.use("/apicafe", productosRouter)
