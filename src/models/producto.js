@@ -4,13 +4,13 @@ const productoSchema = new Schema({
     nombreProducto: {
         type: String,
         minLength: 2,
-        maxLength:100,
+        maxLength:40,
         unique: true,
         required: true
     },
     precio:{
         type:Number,
-        min:1,
+        min:10,
         max:20000,
         required:true
     },
