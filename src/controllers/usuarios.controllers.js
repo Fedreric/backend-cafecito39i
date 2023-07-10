@@ -1,5 +1,5 @@
 import Usuario from "../models/usuario";
-
+import bcrypt from "bcrypt"
 export const login = async (req, res) => {
   try {
     //verificar si existe un mail como el recibido
@@ -36,7 +36,7 @@ export const login = async (req, res) => {
 
 export const crearUsuario = async (req, res) => {
   try {
-    const { email } = req.body;
+    const { email, password } = req.body;
     //verificar si el email ya existe
     let usuario = await Usuario.findOne({ email }); //devulve un null
     console.log(usuario);
@@ -48,7 +48,10 @@ export const crearUsuario = async (req, res) => {
     }
     //guardamos el nuevo usuario en la BD
     usuario = new Usuario(req.body);
-
+    //Editar el usuario para encriptar el password
+    const salt =  bcrypt.genSaltSync(10);
+    usuario.password = bcrypt.hashSync(password, salt)
+    //se guarda en la base de datos
     await usuario.save();
     res.status(201).json({
       mensaje: "usuario creado",
