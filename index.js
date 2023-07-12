@@ -2,7 +2,8 @@ import express from 'express'
 import cors from 'cors'
 import morgan from 'morgan'
 import * as dotenv from 'dotenv';
-import './src/database/dbConection'
+import './src/database/dbConection';
+import path from 'path';
 import productosRouter from './src/routes/productos.routes'
 import usuarioRouter from './src/routes/usuarios.routes'
 
@@ -21,7 +22,7 @@ app.use(cors()); //permite conexiones remotas
 app.use(express.json()); //Permite interpretar el formato json del body de una solicitud(put,post, etc)
 app.use(express.urlencoded({extended: true})); //permite en el request object, strings y arrays
 app.use(morgan('dev')); // nos da informacion extra en la terminal
-
+app.use(express.static(path.join(__dirname,'/public')))
 
 //rutas
 //http://localhost:4000/apicafe/productos
